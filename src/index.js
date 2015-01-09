@@ -143,20 +143,16 @@ petModifier.setTransform(
   { duration : 3500, curve: Easing.inCirc }
 );
 
-
 var aaah_image = new ImageSurface({
-  size: [250, 275],
   content: 'images/aaah.png',
 });
 
-
 var exitModifier = new StateModifier({
-    size: [250, 275],
+    size: [200,134],
 });
 
 // The StateModifier manages the transitionables for us.
 exitModifier.setAlign([1, 1], { duration: 4500 });
-
 
 physics.attach(gravity, satelliteParticle, planetParticle);
 satelliteParticle.setVelocity([0.1, 0, 0]);
@@ -164,7 +160,6 @@ satelliteParticle.setVelocity([0.1, 0, 0]);
 // mainContext.add(planetModifier).add(planetSurface);
 mainContext.add(planetModifier).add(two_image);
 mainContext.add(satelliteModifier).add(satelliteSurface);
-
 mainContext.add(bgModifier).add(one_image);
 mainContext.add(photoModifier).add(two_image);
 mainContext.add(surfaceModifier).add(one_surface);
