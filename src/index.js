@@ -15,6 +15,7 @@ var StateModifier = require('famous/modifiers/StateModifier');
 var Repulsion = require('famous/physics/forces/Repulsion')
 var Particle = require('famous/physics/bodies/Particle')
 var PhysicsEngine = require('famous/physics/PhysicsEngine')
+var Easing = require('famous/transitions/Easing')
 
 // create the main context
 var mainContext = Engine.createContext();
@@ -135,10 +136,26 @@ var catModifier = new Modifier({
   origin: [0, 1],
 });
 
+var petModifier = new StateModifier();
+
+petModifier.setTransform(
+  Transform.translate(200, 500, 0),
+  { duration : 3500, curve: Easing.inCirc }
+);
 
 
+var aaah_image = new ImageSurface({
+  size: [250, 275],
+  content: 'images/aaah.png',
+});
 
 
+var exitModifier = new StateModifier({
+    size: [250, 275],
+});
+
+// The StateModifier manages the transitionables for us.
+exitModifier.setAlign([1, 1], { duration: 4500 });
 
 
 physics.attach(gravity, satelliteParticle, planetParticle);
@@ -152,6 +169,8 @@ mainContext.add(bgModifier).add(one_image);
 mainContext.add(photoModifier).add(two_image);
 mainContext.add(surfaceModifier).add(one_surface);
 mainContext.add(catModifier).add(cat_image);
+mainContext.add(petModifier).add(cat_image);
+mainContext.add(exitModifier).add(aaah_image);
 
 
 
